@@ -16,12 +16,33 @@ namespace MauiAppIntentTest
   {
     protected override void OnCreate(Bundle? savedInstanceState)
     {
-      var intent = Intent;
       base.OnCreate(savedInstanceState);
-    }
-    protected override void OnNewIntent(Intent? intent)
-    {
-      base.OnNewIntent(intent);
+
+      do
+      {
+        if (Intent == null) break;
+        if (Intent.ClipData == null) break;
+        if (Intent.Action != Intent.ActionSend) break;
+        if (Intent.Type != "application/json") break;
+
+        var filePath = Intent.ClipData.GetItemAt(0);
+
+        if (filePath == null) break;
+        if (filePath.Uri == null) break;
+        if (base.ContentResolver == null) break;
+
+        using var inputStream = base.ContentResolver.OpenInputStream(filePath.Uri);
+
+        if (inputStream == null) break;
+
+        using var reader = new StreamReader(inputStream);
+
+        var content = reader.ReadToEnd();
+        
+        var sharePage = ServiceHelper.GetRequiredService<SharePage>();
+        sharePage.SetLabelText(content);
+      }
+      while (false);
     }
   }
 }

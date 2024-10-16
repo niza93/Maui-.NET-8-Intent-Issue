@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppIntentTest.SharePage"
              Title="SharePage">
-    <VerticalStackLayout>
-        <Label 
+  <VerticalStackLayout>
+    <Label 
+          x:Name="testLabel"
             Text="Share page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Button Clicked="Button_Clicked"/>
+  </VerticalStackLayout>
 </ContentPage>

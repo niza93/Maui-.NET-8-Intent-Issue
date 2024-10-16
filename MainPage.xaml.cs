@@ -9,11 +9,6 @@
       InitializeComponent();
     }
 
-    public void SetDemoText(string value)
-    {
-      CounterBtn.Text = value;
-    }
-
     private void OnCounterClicked(object sender, EventArgs e)
     {
       count++;
