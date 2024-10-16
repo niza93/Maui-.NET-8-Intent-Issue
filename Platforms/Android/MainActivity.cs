@@ -38,7 +38,7 @@ namespace MauiAppIntentTest
         using var reader = new StreamReader(inputStream);
 
         var content = reader.ReadToEnd();
-        
+
         var sharePage = ServiceHelper.GetRequiredService<SharePage>();
         sharePage.SetLabelText(content);
       }
